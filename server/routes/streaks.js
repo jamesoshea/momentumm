@@ -6,7 +6,7 @@ router.use(express.json());
 router.use(cors());
 
 router.get('/', function(req, res, next) {
-	res.send('index', { title: 'Express' });
+	res.status(200).json('hello');
 });
 
 module.exports = router;
