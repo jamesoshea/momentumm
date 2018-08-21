@@ -9,7 +9,15 @@ router.use(express.json());
 router.use(cors());
 
 router.get('/', (req, res) => {
-	res.status(200).json('hello');
+	Streak.find((err, streaks) => {
+		if (err) {
+			console.log(err);
+			res.sendStatus(500);
+			return 1;
+		}
+		res.status(200).json(streaks);
+		return 0;
+	});
 });
 
 router.post('/', (req, res) => {

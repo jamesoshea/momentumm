@@ -1,28 +1,28 @@
 <template>
   <div id="app">
+    <div
+      id="my-id"
+      uk-offcanvas="overlay: true"
+    >
+      ...
+    </div>
     <div class="uk-container">
       <h2 class="uk-heading-primary">Streaks</h2>
       <NewStreakWizard />
+      <StreakTable />
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import NewStreakWizard from './components/NewStreakWizard.vue';
+import StreakTable from './components/StreakTable.vue';
 
 export default {
 	name: 'App',
 	components: {
 		NewStreakWizard,
-	},
-	data() {
-		return {
-			msg: 'Welcome to Your Vue.js App',
-		};
-	},
-	mounted() {
-		axios.get('/api/streaks').then((response) => console.log(response));
+		StreakTable,
 	},
 };
 </script>
