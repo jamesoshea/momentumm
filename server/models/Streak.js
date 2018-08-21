@@ -4,10 +4,13 @@ const StreakSchema = new mongoose.Schema({
 	doDont: {
 		type: Boolean,
 	},
+	reminderTime: {
+		type: String,
+	},
 	title: {
 		type: String,
 	},
-	reminderTime: {
+	userTimezone: {
 		type: String,
 	},
 });

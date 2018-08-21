@@ -21,12 +21,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	const { reminderTime, title, type } = req.body;
+	const { reminderTime, title, type, userTimezone } = req.body;
 	Streak.create(
 		{
 			reminderTime,
 			title,
 			type,
+			userTimezone,
 		},
 		(err, newStreak) => {
 			if (err) {

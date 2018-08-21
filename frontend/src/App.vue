@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <div
-      id="my-id"
-      uk-offcanvas="overlay: true"
-    >
-      ...
-    </div>
     <div class="uk-container">
       <h2 class="uk-heading-primary">Streaks</h2>
       <NewStreakWizard />

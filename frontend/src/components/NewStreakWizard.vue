@@ -20,6 +20,7 @@
           v-model="newStreak.reminderTime"
           type="time"
           class="uk-input"
+          pattern="[0-9]{2}:[0-9]{2}"
         >
         <legend
           class="uk-text"
@@ -64,6 +65,7 @@ export default {
 				title: '',
 				reminderTime: '',
 				type: 'DO',
+				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			},
 		};
 	},
@@ -72,7 +74,6 @@ export default {
 			if (!streakValidator(this.newStreak)) {
 				return;
 			}
-			console.log('hello');
 			this.$store.dispatch('streak/addNewStreak', this.newStreak);
 		},
 	},
