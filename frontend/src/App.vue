@@ -2,15 +2,20 @@
   <div id="app">
     <div class="uk-container">
       <h2 class="uk-heading-primary">Streaks</h2>
+      <NewStreakWizard />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import NewStreakWizard from './components/NewStreakWizard.vue';
 
 export default {
 	name: 'App',
+	components: {
+		NewStreakWizard,
+	},
 	data() {
 		return {
 			msg: 'Welcome to Your Vue.js App',

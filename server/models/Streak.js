@@ -5,7 +5,7 @@ const StreakSchema = new mongoose.Schema({
 		type: Boolean,
 	},
 	title: {
-		type: Boolean,
+		type: String,
 	},
 	reminderTime: {
 		type: String,
