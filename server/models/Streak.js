@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const StreakSchema = new mongoose.Schema({
-	doDont: {
+	type: {
 		type: Boolean,
 	},
 	reminderTime: {

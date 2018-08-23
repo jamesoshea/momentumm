@@ -39,4 +39,15 @@ router.post('/', (req, res) => {
 	);
 });
 
+router.delete('/:streakId', (req, res) => {
+	Streak.deleteOne({ _id: req.params.streakId }, (err) => {
+		if (err) {
+			console.log(err);
+			res.sendStatus(400);
+			return;
+		}
+		res.sendStatus(200);
+	});
+});
+
 module.exports = router;

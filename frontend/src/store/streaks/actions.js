@@ -11,7 +11,12 @@ const getAllStreaks = (context) => {
 		.catch(() => {});
 };
 
+const deleteStreak = (context, streakId) => {
+	axios.delete(`/api/streaks/${streakId}`).catch(() => {});
+};
+
 export default {
 	addNewStreak,
+	deleteStreak,
 	getAllStreaks,
 };

@@ -29,7 +29,7 @@
         <label>
           <input
             v-model="newStreak.type"
-            :value="'DO'"
+            :value="true"
             type="radio"
             name="do-dont"
             class="uk-radio"
@@ -39,7 +39,7 @@
         <label>
           <input
             v-model="newStreak.type"
-            :value="'DONT'"
+            :value="false"
             type="radio"
             name="do-dont"
             class="uk-radio"
@@ -64,7 +64,7 @@ export default {
 			newStreak: {
 				title: '',
 				reminderTime: '',
-				type: 'DO',
+				type: true,
 				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			},
 		};
