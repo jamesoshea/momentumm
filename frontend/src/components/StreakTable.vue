@@ -1,25 +1,21 @@
 <template>
   <div>
+    <h3
+      class="uk-heading uk-text-center"
+      v-text="'Your Streaks'"
+    />
     <table
       v-if="streaks.length"
       class="uk-table"
     >
-      <thead>
-        <tr>
-          <th>title</th>
-          <th>do it or not</th>
-          <th>reminder time</th>
-          <th />
-        </tr>
-      </thead>
       <tbody>
         <tr
           v-for="streak in streaks"
           :key="streak._id"
         >
-          <td>{{ streak.type }}</td>
-          <td>{{ streak.title }}</td>
-          <td>{{ streak.reminderTime }}</td>
+          <td v-text="humanizeBoolean(streak.type)"/>
+          <td v-text="streak.title"/>
+          <td v-text="streak.reminderTime"/>
           <td>
             <span
               uk-icon="icon: trash"
@@ -53,6 +49,9 @@ export default {
 					this.$store.dispatch('streak/getAllStreaks');
 				})
 				.catch(() => {});
+		},
+		humanizeBoolean(boolean) {
+			return boolean ? 'DO' : "DON'T";
 		},
 	},
 };

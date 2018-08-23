@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3 class="uk-heading">New Streak</h3>
     <form @submit.prevent="submitStreak">
       <fieldset class="uk-fieldset">
         <legend
@@ -47,7 +48,10 @@
           DON'T DO IT
         </label>
       </fieldset>
-      <button class="uk-button-primary uk-width-1-1">
+      <button
+        :disabled="streaks.length >= 3"
+        class="uk-button-primary uk-width-1-1"
+      >
         Add
       </button>
     </form>
@@ -55,6 +59,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { streakValidator } from '../util/validators';
 
 export default {
@@ -68,6 +73,11 @@ export default {
 				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			},
 		};
+	},
+	computed: {
+		...mapGetters({
+			streaks: 'streak/streaks',
+		}),
 	},
 	methods: {
 		submitStreak() {

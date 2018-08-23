@@ -4,11 +4,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 
+const app = express();
+
 const indexRouter = require('./server/routes/index');
 const streaksRouter = require('./server/routes/streaks');
 const usersRouter = require('./server/routes/users');
-
-const app = express();
 
 const secrets = require('./config/secrets');
 

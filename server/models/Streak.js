@@ -10,6 +10,9 @@ const StreakSchema = new mongoose.Schema({
 	title: {
 		type: String,
 	},
+	userName: {
+		type: String,
+	},
 	userTimezone: {
 		type: String,
 	},
