@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <div class="uk-container">
-      <h2 class="uk-heading-primary">Streaks</h2>
-      <NewStreakWizard />
-      <StreakTable />
+      <h2 class="uk-heading-primary">Momentumm</h2>
+      <router-view />
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: './frontend/src/main.js',
@@ -67,7 +67,6 @@ module.exports = {
 		proxy: {
 			'/api': {
 				target: 'http://localhost:3000',
-				pathRewrite: { '^/api': '' },
 			},
 		},
 	},

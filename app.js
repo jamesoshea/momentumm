@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/streaks', streaksRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/streaks', streaksRouter);
 
 module.exports = app;
