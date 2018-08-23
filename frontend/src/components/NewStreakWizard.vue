@@ -15,7 +15,7 @@
         >
         <legend
           class="uk-text"
-          v-text="'Remider Time'"
+          v-text="'Reminder Time'"
         />
         <input
           v-model="newStreak.reminderTime"
@@ -25,7 +25,7 @@
         >
         <legend
           class="uk-text"
-          v-text="'Reminder Time'"
+          v-text="'Type'"
         />
         <label>
           <input

@@ -40,7 +40,7 @@ export default {
 		};
 	},
 	mounted() {
-		if (localStorage.getItem('momentummTelegramUsername')) {
+		if (localStorage.getItem('momentummTelegramChatId')) {
 			this.$router.push('/streaks');
 		}
 		this.signupCode = `_${Math.random()
@@ -50,7 +50,11 @@ export default {
 			.dispatch('user/createSignupCode', this.signupCode)
 			.then(({ data }) => {
 				this.username = data.user.first_name || data.user.username;
-				localStorage.setItem('momentummTelegramId', data.user.id);
+				localStorage.setItem('momentummTelegramChatId', data.chat.id);
+				localStorage.setItem(
+					'momentummTelegramFirstName',
+					data.user.first_name,
+				);
 			});
 	},
 };
