@@ -74,7 +74,12 @@ export default {
 			if (!streakValidator(this.newStreak)) {
 				return;
 			}
-			this.$store.dispatch('streak/addNewStreak', this.newStreak);
+			this.$store
+				.dispatch('streak/addNewStreak', this.newStreak)
+				.then(() => {
+					this.$store.dispatch('streak/getAllStreaks');
+				})
+				.catch(() => {});
 		},
 	},
 };

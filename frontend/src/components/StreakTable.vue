@@ -1,6 +1,9 @@
 <template>
   <div>
-    <table class="uk-table">
+    <table
+      v-if="streaks.length"
+      class="uk-table"
+    >
       <thead>
         <tr>
           <th>title</th>
@@ -44,7 +47,12 @@ export default {
 	},
 	methods: {
 		deleteStreak(streakId) {
-			this.$store.dispatch('streak/deleteStreak', streakId);
+			this.$store
+				.dispatch('streak/deleteStreak', streakId)
+				.then(() => {
+					this.$store.dispatch('streak/getAllStreaks');
+				})
+				.catch(() => {});
 		},
 	},
 };
