@@ -50,7 +50,7 @@ export default {
 			.dispatch('user/createSignupCode', this.signupCode)
 			.then(({ data }) => {
 				this.username = data.user.first_name || data.user.username;
-				localStorage.setItem('momentummTelegramUsername', data.user.username);
+				localStorage.setItem('momentummTelegramId', data.user.id);
 			});
 	},
 };
