@@ -15,13 +15,13 @@ const pollTelegram = async (signupCode) =>
 					headers,
 				)
 				.then(({ data }) => {
-					const verificationMessage = data.result.find(
+					const verificationUpdate = data.result.find(
 						(update) => update.message && update.message.text === signupCode,
 					);
-					if (verificationMessage) {
+					if (verificationUpdate) {
 						/* eslint-disable-next-line */
 						clearInterval(polling);
-						resolve(verificationMessage);
+						resolve(verificationUpdate.message);
 					}
 				})
 				.catch((error) => {

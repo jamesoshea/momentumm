@@ -12,8 +12,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/signupCode', (req, res) => {
-	userControllers.pollTelegram(req.body.signupCode).then((message) => {
-		res.status(200).json(message);
+	userControllers.pollTelegram(req.body.signupCode).then(({ from, text }) => {
+		res.status(200).json({ user: from, text });
 	});
 });
 
