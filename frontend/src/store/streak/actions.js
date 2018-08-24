@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const addNewStreak = (context, streak) => axios.post('/api/streaks/', streak);
 
-const getAllStreaks = (context) => {
+const getAllStreaks = (context, chatId) => {
 	axios
-		.get('/api/streaks/')
+		.get(`/api/streaks/all/${chatId}`)
 		.then((response) => {
 			context.commit('UPDATE_STREAKS', response.data);
 		})

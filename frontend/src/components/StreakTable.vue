@@ -33,20 +33,25 @@ import { mapGetters } from 'vuex';
 
 export default {
 	name: 'StreakTable',
+	data() {
+		return {
+			chatId: localStorage.getItem('momentummTelegramChatId'),
+		};
+	},
 	computed: {
 		...mapGetters({
 			streaks: 'streak/streaks',
 		}),
 	},
 	mounted() {
-		this.$store.dispatch('streak/getAllStreaks');
+		this.$store.dispatch('streak/getAllStreaks', this.chatId);
 	},
 	methods: {
 		deleteStreak(streakId) {
 			this.$store
 				.dispatch('streak/deleteStreak', streakId)
 				.then(() => {
-					this.$store.dispatch('streak/getAllStreaks');
+					this.$store.dispatch('streak/getAllStreaks', this.chatId);
 				})
 				.catch(() => {});
 		},

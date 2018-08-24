@@ -67,8 +67,9 @@ export default {
 	data() {
 		return {
 			newStreak: {
-				title: '',
+				chatId: localStorage.getItem('momentummTelegramChatId'),
 				reminderTime: '',
+				title: '',
 				type: true,
 				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			},
@@ -87,7 +88,7 @@ export default {
 			this.$store
 				.dispatch('streak/addNewStreak', this.newStreak)
 				.then(() => {
-					this.$store.dispatch('streak/getAllStreaks');
+					this.$store.dispatch('streak/getAllStreaks', this.newStreak.chatId);
 					this.$router.push('/streaks');
 				})
 				.catch(() => {});

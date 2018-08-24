@@ -8,8 +8,8 @@ const router = express.Router();
 router.use(express.json());
 router.use(cors());
 
-router.get('/', (req, res) => {
-	Streak.find((err, streaks) => {
+router.get('/all/:chatId', (req, res) => {
+	Streak.find({ chatId: req.params.chatId }, (err, streaks) => {
 		if (err) {
 			console.log(err);
 			res.sendStatus(500);
@@ -21,9 +21,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	const { reminderTime, title, type, userTimezone } = req.body;
+	const { reminderTime, title, type, userTimezone, chatId } = req.body;
 	Streak.create(
 		{
+			chatId,
 			reminderTime,
 			title,
 			type,

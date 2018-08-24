@@ -10,10 +10,10 @@ const StreakSchema = new mongoose.Schema({
 	title: {
 		type: String,
 	},
-	userName: {
+	userTimezone: {
 		type: String,
 	},
-	userTimezone: {
+	chatId: {
 		type: String,
 	},
 });
