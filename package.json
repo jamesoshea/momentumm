@@ -6,7 +6,8 @@
 		"build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
 		"dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
 		"eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-		"start": "DEBUG=express:* node ./bin/www"
+		"start": "DEBUG=express:* node ./bin/www",
+		"test": "./node_modules/.bin/jest"
 	},
 	"browserslist": [
 		"> 1%",
@@ -26,8 +27,10 @@
 		"vuex": "^3.0.1"
 	},
 	"devDependencies": {
+		"@vue/test-utils": "^1.0.0-beta.24",
 		"babel-core": "^6.26.0",
 		"babel-eslint": "^8.2.6",
+		"babel-jest": "^23.4.2",
 		"babel-loader": "^7.1.2",
 		"babel-preset-env": "^1.6.0",
 		"babel-preset-stage-3": "^6.24.1",
@@ -41,10 +44,12 @@
 		"eslint-plugin-vue": "^4.7.1",
 		"file-loader": "^1.1.4",
 		"husky": "^1.0.0-rc.13",
+		"jest": "^23.5.0",
 		"lint-staged": "^7.2.2",
 		"node-sass": "^4.5.3",
 		"prettier": "^1.14.2",
 		"sass-loader": "^6.0.6",
+		"vue-jest": "^2.6.0",
 		"vue-loader": "^13.0.5",
 		"vue-template-compiler": "^2.4.4",
 		"webpack": "^3.6.0",
@@ -53,6 +58,16 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"
+		}
+	},
+	"jest": {
+		"moduleFileExtensions": [
+			"js",
+			"vue"
+		],
+		"transform": {
+			"^.+\\.js$": "babel-jest",
+			".*\\.(vue)$": "vue-jest"
 		}
 	},
 	"lint-staged": {
