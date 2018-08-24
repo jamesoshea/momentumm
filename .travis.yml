@@ -8,7 +8,7 @@ script: npm test # Here you could also run the build step of your application
 before_deploy: npm install now --no-save # Install Now CLI on Travis
 deploy:
   - provider: script # Run a custom deployment script which we will define below
-    script: now --docker --token $NOW_TOKEN
+    script: now --docker --token $NOW_TOKEN MOMENTUMM_DB_USER=$MOMENTUMM_DB_USER MOMENTUMM_DB_PASSWORD=$MOMENTUMM_DB_PASSWORD MOMENTUMM_TELEGRAM_TOKEN=$MOMENTUMM_TELEGRAM_TOKEN
     skip_cleanup: true
     on:
       all_branches: true
