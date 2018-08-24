@@ -10,11 +10,9 @@ const indexRouter = require('./server/routes/index');
 const streaksRouter = require('./server/routes/streaks');
 const usersRouter = require('./server/routes/users');
 
-const secrets = require('./config/secrets');
-
 mongoose.connect(
-	`mongodb://${secrets.dbUser}:${
-		secrets.dbPassword
+	`mongodb://${process.env.MOMENTUMM_DB_USER}:${
+		process.env.MOMENTUMM_DB_PASSWORD
 	}@ds125322.mlab.com:25322/momentumm`,
 );
 

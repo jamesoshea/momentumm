@@ -1,5 +1,4 @@
 const axios = require('axios');
-const secrets = require('../../config/secrets');
 
 const headers = {
 	'Content-type': 'application/json',
@@ -10,7 +9,9 @@ const pollTelegram = async (signupCode) =>
 		const getTelegramUpdates = () =>
 			axios
 				.post(
-					`https://api.telegram.org/bot${secrets.telegramBotToken}/getUpdates`,
+					`https://api.telegram.org/bot${
+						process.env.MOMENTUMM_TELEGRAM_TOKEN
+					}/getUpdates`,
 					{ limit: 100 },
 					headers,
 				)
