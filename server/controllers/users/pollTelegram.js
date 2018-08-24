@@ -31,6 +31,4 @@ const pollTelegram = async (signupCode) =>
 		const polling = setInterval(getTelegramUpdates, 3000);
 	});
 
-module.exports = {
-	pollTelegram,
-};
+module.exports = pollTelegram;
