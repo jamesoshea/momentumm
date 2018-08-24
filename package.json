@@ -6,7 +6,8 @@
 		"build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
 		"dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
 		"eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-		"start": "DEBUG=express:* node ./bin/www",
+		"start": "node ./bin/www",
+		"start-dev": "DEBUG=express:* node ./bin/www",
 		"test": "./node_modules/.bin/jest"
 	},
 	"browserslist": [

@@ -12,11 +12,11 @@
 
 Run the frontend dev server:
 
-`yarn run dev`
+`yarn dev`
 
 Run the backend:
 
-`yarn start`
+`yarn start-dev`
 
 Build the docker container:
 `docker build .`

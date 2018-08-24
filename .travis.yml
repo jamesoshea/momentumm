@@ -8,13 +8,13 @@ script: yarn test # Here you could also run the build step of your application
 before_deploy: npm install now --no-save # Install Now CLI on Travis
 deploy:
   - provider: script # Run a custom deployment script which we will define below
-    script: now --docker --token $NOW_TOKEN -e MOMENTUMM_DB_USER -e MOMENTUMM_DB_PASSWORD -e MOMENTUMM_TELEGRAM_TOKEN
+    script: now --docker --token $NOW_TOKEN -e MOMENTUMM_DB_USER -e MOMENTUMM_DB_PASSWORD -e MOMENTUMM_TELEGRAM_TOKEN -e DEBUG=express:*
     skip_cleanup: true
     on:
       all_branches: true
       master: false
-  # - provider: script
-  #   script: now --docker --token $NOW_TOKEN
-  #   skip_cleanup: true
-  #   on:
-  #     master: true
+  - provider: script
+    script: now --docker --token $NOW_TOKEN -e MOMENTUMM_DB_USER -e MOMENTUMM_DB_PASSWORD -e MOMENTUMM_TELEGRAM_TOKEN
+    skip_cleanup: true
+    on:
+      master: true
