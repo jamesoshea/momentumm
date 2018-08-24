@@ -1,18 +1,22 @@
-# wow
+# momentumm by <a href="https://github.com/jamesoshea">jamesoshea</a>
 
-> A Vue.js project
+[![Build Status](https://travis-ci.com/jamesoshea/momentumm.svg?branch=master)](https://travis-ci.com/jamesoshea/momentumm)
 
-## Build Setup
+## Description
 
-```bash
-# install dependencies
-npm install
+> A streak/habit tracking app with Telegram integration.
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Installation
 
-# build for production with minification
-npm run build
-```
+`yarn install`
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Run the frontend dev server:
+
+`yarn run dev`
+
+Run the backend:
+
+`yarn start`
+
+Build the docker container:
+`docker build .`
