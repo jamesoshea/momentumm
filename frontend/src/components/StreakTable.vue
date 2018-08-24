@@ -13,10 +13,16 @@
           v-for="streak in streaks"
           :key="streak._id"
         >
-          <td v-text="humanizeBoolean(streak.type)"/>
-          <td v-text="streak.title"/>
-          <td v-text="streak.reminderTime"/>
-          <td>
+          <td
+            class="uk-text-center"
+            v-text="humanizeBoolean(streak.type)"/>
+          <td
+            class="uk-text-center"
+            v-text="streak.title"/>
+          <td
+            class="uk-text-center"
+            v-text="streak.reminderTime"/>
+          <td class="uk-text-center">
             <span
               uk-icon="icon: trash"
               @click="deleteStreak(streak._id)"
@@ -56,7 +62,7 @@ export default {
 				.catch(() => {});
 		},
 		humanizeBoolean(boolean) {
-			return boolean ? 'DO' : "DON'T";
+			return boolean ? 'DO IT' : "DON'T IT";
 		},
 	},
 };
