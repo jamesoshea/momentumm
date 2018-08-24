@@ -88,6 +88,7 @@ export default {
 				.dispatch('streak/addNewStreak', this.newStreak)
 				.then(() => {
 					this.$store.dispatch('streak/getAllStreaks');
+					this.$router.push('/streaks');
 				})
 				.catch(() => {});
 		},
