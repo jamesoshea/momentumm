@@ -79,5 +79,9 @@
 			"prettier --write",
 			"git add"
 		]
+	},
+	"now": {
+		"alias": "momentumm.now.sh",
+		"name": "momentumm"
 	}
 }
