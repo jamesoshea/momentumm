@@ -1,7 +1,25 @@
 <template>
   <div id="app">
     <div class="uk-container">
-      <h2 class="uk-heading-primary">Momentumm</h2>
+      <nav
+        class="uk-navbar-container"
+        uk-navbar
+      >
+        <div class="uk-navbar-left">
+          <ul class="uk-navbar-nav">
+            <li class="uk-parent">
+              <router-link :to="'/new-streak'">
+                <a>New</a>
+              </router-link>
+            </li>
+            <li class="uk-parent">
+              <router-link :to="'/streaks'">
+                <a>All Streaks</a>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <router-view />
     </div>
   </div>
