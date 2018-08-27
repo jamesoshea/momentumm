@@ -3,6 +3,7 @@ import Vue from 'vue';
 
 import Onboarding from '../components/Onboarding.vue';
 import NewStreakWizard from '../components/NewStreakWizard.vue';
+import StreakDetail from '../components/StreakDetail.vue';
 import StreakTable from '../components/StreakTable.vue';
 
 const routes = [
@@ -10,6 +11,7 @@ const routes = [
 	{ path: '/onboarding', component: Onboarding },
 	{ path: '/new-streak', component: NewStreakWizard },
 	{ path: '/streaks', component: StreakTable },
+	{ path: '/streaks/:streakId', component: StreakDetail },
 ];
 
 Vue.use(Router);

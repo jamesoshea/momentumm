@@ -12,24 +12,23 @@
         <tr
           v-for="streak in streaks"
           :key="streak._id"
+          @click="$router.push(`/streaks/${streak._id}`)"
         >
-          <router-link :to="`/streaks/${streak._id}`">
-            <td
-              class="uk-text-center"
-              v-text="humanizeBoolean(streak.type)"/>
-            <td
-              class="uk-text-center"
-              v-text="streak.title"/>
-            <td
-              class="uk-text-center"
-              v-text="streak.reminderTime"/>
-            <td class="uk-text-center">
-              <span
-                uk-icon="icon: trash"
-                @click="deleteStreak(streak._id)"
-              />
-            </td>
-          </router-link>
+          <td
+            class="uk-text-center"
+            v-text="humanizeBoolean(streak.type)"/>
+          <td
+            class="uk-text-center"
+            v-text="streak.title"/>
+          <td
+            class="uk-text-center"
+            v-text="streak.reminderTime"/>
+          <td class="uk-text-center">
+            <span
+              uk-icon="icon: trash"
+              @click.stop="deleteStreak(streak._id)"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
