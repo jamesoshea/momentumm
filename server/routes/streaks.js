@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const Streak = require('../models/Streak');
+const { createReminder } = require('../controllers/streaks/createReminders');
 
 const router = express.Router();
 
@@ -35,6 +36,7 @@ router.post('/', (req, res) => {
 				res.sendStatus(500);
 				return;
 			}
+			createReminder(newStreak);
 			res.status(200).json(newStreak);
 		},
 	);
