@@ -14,7 +14,7 @@ deploy:
       all_branches: true
       master: false
   - provider: script
-    script: now --docker --token $NOW_TOKEN -e MOMENTUMM_DB_USER -e MOMENTUMM_DB_PASSWORD -e MOMENTUMM_TELEGRAM_TOKEN && now alias --token $NOW_TOKEN && now scale momentumm.now.sh 1
+    script: now --docker --token $NOW_TOKEN -e MOMENTUMM_DB_USER -e MOMENTUMM_DB_PASSWORD -e MOMENTUMM_TELEGRAM_TOKEN && now alias --token $NOW_TOKEN && now scale momentumm.now.sh 1 1
     skip_cleanup: true
     on:
       master: true

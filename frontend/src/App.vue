@@ -26,15 +26,8 @@
 </template>
 
 <script>
-import NewStreakWizard from './components/NewStreakWizard.vue';
-import StreakTable from './components/StreakTable.vue';
-
 export default {
 	name: 'App',
-	components: {
-		NewStreakWizard,
-		StreakTable,
-	},
 };
 </script>
 

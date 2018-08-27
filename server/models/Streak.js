@@ -16,6 +16,9 @@ const StreakSchema = new mongoose.Schema({
 	chatId: {
 		type: String,
 	},
+	results: {
+		type: Array,
+	},
 });
 
 module.exports = mongoose.model('Streak', StreakSchema);

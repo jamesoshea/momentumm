@@ -72,6 +72,7 @@ export default {
 				title: '',
 				type: true,
 				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+				results: [],
 			},
 		};
 	},
