@@ -7,7 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('momentumm:server');
 var http = require('http');
-var createReminders = require('../server/controllers/streaks/createReminders');
+var {
+	createReminders,
+} = require('../server/controllers/streaks/createReminders');
 
 /**
  * Get port from environment and store in Express.

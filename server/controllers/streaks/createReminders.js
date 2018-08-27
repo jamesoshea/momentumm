@@ -24,6 +24,22 @@ const sendReminder = (streak) => {
 		});
 };
 
+const createReminder = (streak) => {
+	const reminderHour = streak.reminderTime.split(':')[0];
+	const reminderMinute = streak.reminderTime.split(':')[1];
+	/* eslint-disable-next-line */
+	const reminder = new CronJob(
+		`00 ${reminderMinute} ${reminderHour} * * *`,
+		() => {
+			sendReminder(streak);
+		},
+		null,
+		true,
+		streak.userTimezone,
+	);
+	reminder.start();
+};
+
 const createReminders = () => {
 	Streak.find({}, (err, streaks) => {
 		if (err) {
@@ -31,21 +47,12 @@ const createReminders = () => {
 			throw err;
 		}
 		streaks.forEach((streak) => {
-			const reminderHour = streak.reminderTime.split(':')[0];
-			const reminderMinute = streak.reminderTime.split(':')[1];
-			/* eslint-disable-next-line */
-			const reminder = new CronJob(
-				`00 ${reminderMinute} ${reminderHour} * * *`,
-				() => {
-					sendReminder(streak);
-				},
-				null,
-				true,
-				streak.userTimezone,
-			);
-			reminder.start();
+			createReminder(streak);
 		});
 	});
 };
 
-module.exports = createReminders;
+module.exports = {
+	createReminder,
+	createReminders,
+};
