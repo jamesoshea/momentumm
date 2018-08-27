@@ -4,15 +4,26 @@
       class="uk-heading-divider"
       v-text="currentStreak.title"
     />
+    <h3
+      class="uk-heading-line"
+    >
+      <span>stats</span>
+    </h3>
+
+    <h3
+      class="uk-heading-line"
+    >
+      <span>update</span>
+    </h3>
     <button
-      class="uk-button uk-button-default"
+      class="uk-button uk-button-default uk-width-1-1"
       @click="updateStreak(true)"
-      v-text="'DID IT'"
+      v-text="'I SUCCEEDED'"
     />
     <button
-      class="uk-button uk-button-default"
+      class="uk-button uk-button-default uk-width-1-1 uk-margin-top"
       @click="updateStreak(false)"
-      v-text="'DIDN\'T IT'"
+      v-text="'TOMORROW I WILL SUCCEED'"
     />
   </div>
 </template>

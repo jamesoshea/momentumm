@@ -1,20 +1,19 @@
 <template>
   <div>
-    <h3 class="uk-heading">New Streak</h3>
     <form @submit.prevent="submitStreak">
       <fieldset class="uk-fieldset">
         <legend
-          class="uk-text"
+          class="uk-text uk-margin-top"
           v-text="'Title'"
         />
         <input
           v-model="newStreak.title"
           type="text"
           class="uk-input"
-          placeholder="Title"
+          placeholder="What do you want to do?"
         >
         <legend
-          class="uk-text"
+          class="uk-text uk-margin-top"
           v-text="'Reminder Time'"
         />
         <input
@@ -24,33 +23,35 @@
           pattern="[0-9]{2}:[0-9]{2}"
         >
         <legend
-          class="uk-text"
+          class="uk-text uk-margin-top"
           v-text="'Type'"
         />
-        <label>
-          <input
-            v-model="newStreak.type"
-            :value="true"
-            type="radio"
-            name="do-dont"
-            class="uk-radio"
-          >
-          DO IT
-        </label>
-        <label>
-          <input
-            v-model="newStreak.type"
-            :value="false"
-            type="radio"
-            name="do-dont"
-            class="uk-radio"
-          >
-          DON'T DO IT
-        </label>
+        <div class="uk-flex uk-flex-around uk-text-center">
+          <label>
+            <input
+              v-model="newStreak.type"
+              :value="true"
+              type="radio"
+              name="do-dont"
+              class="uk-radio"
+            >
+            DO IT
+          </label>
+          <label>
+            <input
+              v-model="newStreak.type"
+              :value="false"
+              type="radio"
+              name="do-dont"
+              class="uk-radio"
+            >
+            DON'T DO IT
+          </label>
+        </div>
       </fieldset>
       <button
         :disabled="streaks.length >= 3"
-        class="uk-button-primary uk-width-1-1"
+        class="uk-button uk-button-default uk-width-1-1 uk-margin-top"
       >
         Add
       </button>

@@ -1,25 +1,24 @@
 <template>
   <div id="app">
-    <div class="uk-container">
-      <nav
-        class="uk-navbar-container"
-        uk-navbar
-      >
-        <div class="uk-navbar-left">
-          <ul class="uk-navbar-nav">
-            <li class="uk-parent">
-              <router-link :to="'/new-streak'">
-                <a>New</a>
-              </router-link>
-            </li>
-            <li class="uk-parent">
-              <router-link :to="'/streaks'">
-                <a>All Streaks</a>
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <nav
+      class="uk-navbar-container"
+      uk-navbar
+    >
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo">Momentumm</a>
+      </div>
+      <div class="uk-navbar-right uk-margin-right">
+        <ul class="uk-navbar-nav">
+          <li class="uk-parent">
+            <a @click="$router.push('/new-streak')">New</a>
+          </li>
+          <li class="uk-parent">
+            <a @click="$router.push('/streaks')">All</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="uk-container uk-padding">
       <router-view />
     </div>
   </div>
