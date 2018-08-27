@@ -1,6 +1,19 @@
 <template>
   <div>
-    wow
+    <h2
+      class="uk-heading-divider"
+      v-text="currentStreak.title"
+    />
+    <button
+      class="uk-button uk-button-default"
+      @click="updateStreak(true)"
+      v-text="'DID IT'"
+    />
+    <button
+      class="uk-button uk-button-default"
+      @click="updateStreak(false)"
+      v-text="'DIDN\'T IT'"
+    />
   </div>
 </template>
 
@@ -17,6 +30,16 @@ export default {
 			return this.streaks.find(
 				({ _id }) => _id === this.$route.params.streakId,
 			);
+		},
+	},
+	methods: {
+		updateStreak(result) {
+			const payload = {
+				date: new Date().toLocaleDateString(),
+				result,
+				streakId: this.$route.params.streakId,
+			};
+			this.$store.dispatch('streak/updateStreak', payload);
 		},
 	},
 };

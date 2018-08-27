@@ -51,4 +51,26 @@ router.delete('/:streakId', (req, res) => {
 	});
 });
 
+router.put('/:streakId', (req, res) => {
+	const { date, result } = req.body;
+	Streak.findById(req.params.streakId, (err, streak) => {
+		if (err) {
+			console.log(err);
+			res.sendStatus(400);
+			return;
+		}
+		const dateExists = streak.results.find(
+			(existingResult) => existingResult.date === date,
+		);
+		console.log(dateExists);
+		if (dateExists) {
+			res.status(400).json('You have already submitted a result on this date');
+			return;
+		}
+		streak.results.push({ date, result });
+		streak.save();
+		res.status(200).json(streak);
+	});
+});
+
 module.exports = router;
