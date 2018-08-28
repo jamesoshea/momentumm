@@ -41,7 +41,10 @@ export default {
 			.toString(36)
 			.substr(2, 9)}`;
 		this.$store
-			.dispatch('user/createSignupCode', this.signupCode)
+			.dispatch('user/createSignupCode', {
+				userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+				signupCode: this.signupCode,
+			})
 			.then(({ data }) => {
 				const username = data.user.first_name || data.user.username;
 				localStorage.setItem('momentummTelegramChatId', data.chat.id);
