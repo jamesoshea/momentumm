@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <nav
+      v-if="alreadyOnboarded"
       class="uk-navbar-container"
       uk-navbar
     >
@@ -27,6 +28,11 @@
 <script>
 export default {
 	name: 'App',
+	computed: {
+		alreadyOnboarded() {
+			return this.$route.path !== '/onboarding';
+		},
+	},
 };
 </script>
 

@@ -1,41 +1,38 @@
 <template>
   <div class="uk-text-center">
     <div v-if="username">
-      <p
-        class="uk-text-lead"
-      >
-        Hi, {{ username }}.
-      </p>
-      <p>Let's get started.</p>
-      <router-link to="/new-streak">
-        <span uk-icon="arrow-right" />
-      </router-link>
+      <GetStarted
+        :username="username"
+      />
     </div>
     <div v-else>
-      <p class="uk-text-meta">
-        Go to
-        <a
-          href="https://telegram.me/momentumm_bot"
-          target="blank"
-        >
-          telegram.me/momentumm_bot
-        </a>
+      <p class="uk-text-lead">
+        Momentumm is a basic streak tracker.
       </p>
-      <p class="uk-text-meta">...and then enter this code:</p>
-      <p
-        class="uk-text-lead"
-        v-text="signupCode"
+      <p class="uk-text">
+        Use it to motivate you to do something every day.
+        It will send you a Telegram reminder at a time of your choosing, and you can
+        track your progress here.
+      </p>
+      <TelegramSignup
+        @accountCreated="handleAccountCreation"
       />
     </div>
   </div>
 </template>
 
 <script>
+import GetStarted from './GetStarted.vue';
+import TelegramSignup from './TelegramSignup.vue';
+
 export default {
 	name: 'Onboarding',
+	components: {
+		GetStarted,
+		TelegramSignup,
+	},
 	data() {
 		return {
-			signupCode: null,
 			username: '',
 		};
 	},
@@ -43,22 +40,11 @@ export default {
 		if (localStorage.getItem('momentummTelegramChatId')) {
 			this.$router.push('/streaks');
 		}
-		this.signupCode = `_${Math.random()
-			.toString(36)
-			.substr(2, 9)}`;
-		this.$store
-			.dispatch('user/createSignupCode', this.signupCode)
-			.then(({ data }) => {
-				this.username = data.user.first_name || data.user.username;
-				localStorage.setItem('momentummTelegramChatId', data.chat.id);
-				localStorage.setItem(
-					'momentummTelegramFirstName',
-					data.user.first_name,
-				);
-			});
+	},
+	methods: {
+		handleAccountCreation(username) {
+			this.username = username;
+		},
 	},
 };
 </script>
-
-<style>
-</style>
