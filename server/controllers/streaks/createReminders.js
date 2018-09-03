@@ -1,27 +1,33 @@
 const axios = require('axios');
 const { CronJob } = require('cron');
 const Streak = require('../../models/Streak');
+const getUser = require('../../controllers/users/getUser');
 
 const headers = {
 	'Content-type': 'application/json',
 };
 
 const sendReminder = (streak) => {
-	axios
-		.post(
-			`https://api.telegram.org/bot${
-				process.env.MOMENTUMM_TELEGRAM_TOKEN
-			}/sendMessage`,
-			{
-				chat_id: streak.chatId,
-				text: streak.title,
-			},
-			headers,
-		)
-		.then((response) => response)
-		.catch((error) => {
-			throw error;
-		});
+	getUser(streak.chatId).then((user) => {
+		const text = `Hello, ${user.firstName}, don't forget this: ${
+			streak.title
+		}.`;
+		axios
+			.post(
+				`https://api.telegram.org/bot${
+					process.env.MOMENTUMM_TELEGRAM_TOKEN
+				}/sendMessage`,
+				{
+					chat_id: streak.chatId,
+					text,
+				},
+				headers,
+			)
+			.then((response) => response)
+			.catch((error) => {
+				throw error;
+			});
+	});
 };
 
 const createReminder = (streak) => {
