@@ -3,6 +3,10 @@ const cors = require('cors');
 
 const Streak = require('../models/Streak');
 const { createReminder } = require('../controllers/streaks/createReminders');
+const {
+	calculateStats,
+	resultExists,
+} = require('../controllers/streaks/dateUtil');
 
 const router = express.Router();
 
@@ -12,7 +16,6 @@ router.use(cors());
 router.get('/all/:chatId', (req, res) => {
 	Streak.find({ chatId: req.params.chatId }, (err, streaks) => {
 		if (err) {
-			console.log(err);
 			res.sendStatus(500);
 			return 1;
 		}
@@ -61,11 +64,8 @@ router.put('/:streakId', (req, res) => {
 			res.sendStatus(400);
 			return;
 		}
-		const dateExists = streak.results.find(
-			(existingResult) => existingResult.date === date,
-		);
-		console.log(dateExists);
-		if (dateExists) {
+		calculateStats(streak.results);
+		if (resultExists(streak.results, date)) {
 			res.status(400).json('You have already submitted a result on this date');
 			return;
 		}

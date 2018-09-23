@@ -15,6 +15,7 @@ module.exports = {
 	],
 	plugins: ['vue', 'prettier'],
 	rules: {
+		'vue/html-indent': ['error', 'tab'],
 		'prettier/prettier': 'error',
 		'no-param-reassign': 0,
 	},

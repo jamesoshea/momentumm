@@ -1,31 +1,31 @@
 <template>
-  <div>
-    <h2
-      class="uk-heading-divider"
-      v-text="currentStreak.title"
-    />
-    <h3
-      class="uk-heading-line"
-    >
-      <span>stats</span>
-    </h3>
-
-    <h3
-      class="uk-heading-line"
-    >
-      <span>update</span>
-    </h3>
-    <button
-      class="uk-button uk-button-default uk-width-1-1"
-      @click="updateStreak(true)"
-      v-text="'I SUCCEEDED'"
-    />
-    <button
-      class="uk-button uk-button-default uk-width-1-1 uk-margin-top"
-      @click="updateStreak(false)"
-      v-text="'TOMORROW I WILL SUCCEED'"
-    />
-  </div>
+	<div>
+		<h2
+			v-if="currenStreak"
+			class="uk-heading-divider"
+			v-text="currentStreak.title"
+		/>
+		<h3
+			class="uk-heading-line"
+		>
+			<span>stats</span>
+		</h3>
+		<h3
+			class="uk-heading-line"
+		>
+			<span>update</span>
+		</h3>
+		<button
+			class="uk-button uk-button-default uk-width-1-1"
+			@click="updateStreak(true)"
+			v-text="'I SUCCEEDED'"
+		/>
+		<button
+			class="uk-button uk-button-default uk-width-1-1 uk-margin-top"
+			@click="updateStreak(false)"
+			v-text="'TOMORROW I WILL SUCCEED'"
+		/>
+	</div>
 </template>
 
 <script>
@@ -43,10 +43,17 @@ export default {
 			);
 		},
 	},
+	mounted() {
+		const chatId = localStorage.getItem('momentummTelegramChatId');
+		if (!chatId) {
+			return;
+		}
+		this.$store.dispatch('streak/getAllStreaks', chatId);
+	},
 	methods: {
 		updateStreak(result) {
 			const payload = {
-				date: new Date().toLocaleDateString(),
+				date: Date.now(),
 				result,
 				streakId: this.$route.params.streakId,
 			};
