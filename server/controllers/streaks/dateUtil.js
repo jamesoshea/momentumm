@@ -9,6 +9,9 @@ const formatResults = (results) =>
 		}));
 
 const findLongestStreak = (results) => {
+	if (!results.length) {
+		return 0;
+	}
 	const formattedResults = formatResults(results);
 	const earliestDay = formattedResults[0];
 	const latestDay = formattedResults[formattedResults.length - 1];
@@ -38,6 +41,9 @@ const findLongestStreak = (results) => {
 };
 
 const findCurrentStreak = (results) => {
+	if (!results.length) {
+		return 0;
+	}
 	const formattedResults = formatResults(results);
 	const earliestDay = formattedResults[0];
 	let currentStreak = 0;
