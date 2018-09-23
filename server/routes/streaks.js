@@ -19,7 +19,12 @@ router.get('/all/:chatId', (req, res) => {
 			res.sendStatus(500);
 			return 1;
 		}
-		res.status(200).json(streaks);
+		const streaksWithStats = streaks.map((streak) => ({
+			stats: calculateStats(streak.results),
+			/* eslint-disable-next-line */
+			...streak._doc,
+		}));
+		res.status(200).json(streaksWithStats);
 		return 0;
 	});
 });
@@ -48,7 +53,6 @@ router.post('/', (req, res) => {
 router.delete('/:streakId', (req, res) => {
 	Streak.deleteOne({ _id: req.params.streakId }, (err) => {
 		if (err) {
-			console.log(err);
 			res.sendStatus(400);
 			return;
 		}
@@ -60,11 +64,9 @@ router.put('/:streakId', (req, res) => {
 	const { date, result } = req.body;
 	Streak.findById(req.params.streakId, (err, streak) => {
 		if (err) {
-			console.log(err);
 			res.sendStatus(400);
 			return;
 		}
-		calculateStats(streak.results);
 		if (resultExists(streak.results, date)) {
 			res.status(400).json('You have already submitted a result on this date');
 			return;

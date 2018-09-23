@@ -26,7 +26,7 @@ const findLongestStreak = (results) => {
 		);
 		if (!resultToFind) {
 			currentStreak = 0;
-		} else {
+		} else if (resultToFind.result) {
 			currentStreak += 1;
 		}
 		if (currentStreak > longestStreak) {
@@ -37,7 +37,31 @@ const findLongestStreak = (results) => {
 	return longestStreak;
 };
 
+const findCurrentStreak = (results) => {
+	const formattedResults = formatResults(results);
+	const earliestDay = formattedResults[0];
+	let currentStreak = 0;
+	const dateToTest = moment(Date.now()).startOf('day');
+	const earliestDateToTest = moment(earliestDay.date).startOf('day');
+	while (!dateToTest.isSame(earliestDateToTest)) {
+		const resultToFind = formattedResults.find((result) =>
+			moment(result.date)
+				.startOf('day')
+				.isSame(dateToTest),
+		);
+		if (!resultToFind) {
+			return currentStreak;
+		}
+		if (resultToFind.result) {
+			currentStreak += 1;
+		}
+		dateToTest.subtract(1, 'days');
+	}
+	return currentStreak;
+};
+
 const calculateStats = (results) => ({
+	currentStreak: findCurrentStreak(results),
 	longestStreak: findLongestStreak(results),
 });
 

@@ -1,7 +1,6 @@
 <template>
-	<div>
+	<div v-if="currentStreak">
 		<h2
-			v-if="currenStreak"
 			class="uk-heading-divider"
 			v-text="currentStreak.title"
 		/>
@@ -10,20 +9,27 @@
 		>
 			<span>stats</span>
 		</h3>
+		longest streak: {{ currentStreak.stats.longestStreak }} days<br>
+		current streak: {{ currentStreak.stats.currentStreak }} days
 		<h3
 			class="uk-heading-line"
 		>
 			<span>update</span>
 		</h3>
 		<button
-			class="uk-button uk-button-default uk-width-1-1"
+			class="uk-button uk-button-default uk-width-1-1 uk-display-block"
 			@click="updateStreak(true)"
-			v-text="'I SUCCEEDED'"
+		>
+			I DID THIS TODAY
+		</button>
+		<div
+			v-if="streakUpdating"
+			class="streak__loading-spinner"
+			uk-spinner="ratio:0.5"
 		/>
-		<button
-			class="uk-button uk-button-default uk-width-1-1 uk-margin-top"
-			@click="updateStreak(false)"
-			v-text="'TOMORROW I WILL SUCCEED'"
+		<div
+			class="uk-text-meta uk-text-center"
+			v-text="errorMessage"
 		/>
 	</div>
 </template>
@@ -33,6 +39,12 @@ import { mapGetters } from 'vuex';
 
 export default {
 	name: 'StreakDetail',
+	data() {
+		return {
+			errorMessage: '',
+			streakUpdating: false,
+		};
+	},
 	computed: {
 		...mapGetters({
 			streaks: 'streak/streaks',
@@ -52,13 +64,31 @@ export default {
 	},
 	methods: {
 		updateStreak(result) {
+			this.streakUpdating = true;
 			const payload = {
 				date: Date.now(),
 				result,
 				streakId: this.$route.params.streakId,
 			};
-			this.$store.dispatch('streak/updateStreak', payload);
+			this.$store
+				.dispatch('streak/updateStreak', payload)
+				.then(() => {
+					this.streakUpdating = false;
+					this.errorMessage = '';
+				})
+				.catch((error) => {
+					this.streakUpdating = false;
+					this.errorMessage = error.response.data;
+				});
 		},
 	},
 };
 </script>
+
+<style lang="scss" scoped>
+.streak__loading-spinner {
+	margin-top: 1rem;
+	width: 100%;
+	text-align: center;
+}
+</style>
