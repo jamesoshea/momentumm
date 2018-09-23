@@ -9,9 +9,9 @@ const headers = {
 
 const sendReminder = (streak) => {
 	getUser(streak.chatId).then((user) => {
-		const text = `Hello, ${user.firstName}, don't forget this: ${
-			streak.title
-		}.`;
+		const text = streak.type
+			? `Hello ${user.firstName}, don't forget this today: ${streak.title}.`
+			: `Hello ${user.firstName}, try not to do this today: ${streak.title}.`;
 		axios
 			.post(
 				`https://api.telegram.org/bot${
